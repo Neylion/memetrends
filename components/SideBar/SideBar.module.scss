@@ -1,0 +1,36 @@
+.sideBar {
+  display: none;
+  flex-direction: column;
+  position: relative;
+  background-color: lightblue;
+
+  @media screen and (min-width: 480px) {
+    display: flex;
+    flex-shrink: 0;
+  }
+}
+
+.content {
+  height: 100%;
+  display: flex;
+  flex-grow: 1;
+  overflow-y: auto;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.closeMenu {
+  position: absolute;
+  right: 0px;
+}
+
+.burgerMenu {
+  border: 0;
+  position: absolute;
+}
+.burgerMenu > div {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}

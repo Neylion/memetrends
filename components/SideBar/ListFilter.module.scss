@@ -1,0 +1,50 @@
+.filter {
+  display: flex;
+  flex-shrink: 0;
+  color: white;
+  padding: 20px;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+
+  &Choice {
+    margin: 0 5px;
+    padding: 3px;
+    background-color: lightgray;
+    flex: 2;
+    border: 1px solid;
+  }
+
+  &Dropdown {
+    position: relative;
+    flex: 1;
+
+    &Button {
+      margin: 0 5px;
+      padding: 3px;
+      border: 1px solid;
+    }
+
+    &:hover &Content {
+      display: block;
+    }
+
+    &Content {
+      display: none;
+      position: absolute;
+      background-color: lightgray;
+      margin-left: 5px;
+      min-width: 100px;
+
+      &Item {
+        padding: 5px 0px;
+        background-color: inherit;
+        width: 100%;
+        display: block;
+
+        &:hover {
+          filter: brightness(110%);
+        }
+      }
+    }
+  }
+}

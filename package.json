@@ -2,6 +2,9 @@
   "name": "with-typescript",
   "version": "1.0.0",
   "scripts": {
+    "debug3": "node --inspect ./node_modules/next/dist/bin/next",
+    "debug2": "/Applications/'Google Chrome.app'/Contents/MacOS/'Google Chrome' --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug & next",
+    "debug": "NODE_OPTIONS='--inspect' next dev",
     "dev": "next",
     "build": "next build",
     "start": "next start",
@@ -16,6 +19,7 @@
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
+    "sass": "^1.29.0",
     "typescript": "4.0"
   },
   "license": "MIT"

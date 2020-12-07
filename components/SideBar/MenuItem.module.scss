@@ -1,0 +1,10 @@
+.item {
+  padding: 10px 20px;
+  font-weight: bold;
+  background-color: lightblue;
+
+  &:hover {
+    filter: brightness(110%);
+    cursor: pointer;
+  }
+}
