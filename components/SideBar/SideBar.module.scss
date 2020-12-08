@@ -21,16 +21,6 @@
 
 .closeMenu {
   position: absolute;
+  background-color: transparent;
   right: 0px;
-}
-
-.burgerMenu {
-  border: 0;
-  position: absolute;
-}
-.burgerMenu > div {
-  width: 35px;
-  height: 5px;
-  background-color: black;
-  margin: 6px 0;
 }

@@ -1,4 +1,4 @@
-import React, { ReactNode, Fragment } from "react";
+import React, { ReactNode, Fragment, useState } from "react";
 import Head from "next/head";
 import styles from "./Layout.module.scss";
 import SideBar from "./SideBar/SideBar";
@@ -9,6 +9,7 @@ type Props = {
 };
 
 const Layout = ({ children, title }: Props) => {
+  const [sideBarIsOpen, toggleSidebar] = useState(true);
   return (
     <Fragment>
       <Head>
@@ -16,9 +17,12 @@ const Layout = ({ children, title }: Props) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className={styles.navbar}>MemeTrends.net</div>
+      <div className={styles.navbar}>
+        <button onClick={() => toggleSidebar(!sideBarIsOpen)}>Menu</button>
+        <div className={styles.navbarTitle}>MemeTrends.net</div>
+      </div>
       <div style={{ display: "flex", height: "100%" }}>
-        <SideBar />
+        <SideBar isOpen={sideBarIsOpen} toggle={toggleSidebar} />
         <div id={styles.right} className={styles.column}>
           <div className={styles.content}>{children}</div>
           <div className={styles.footer}>

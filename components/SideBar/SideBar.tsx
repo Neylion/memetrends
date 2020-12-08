@@ -10,16 +10,14 @@ for (let i = 100; i <= 200; i++) {
   trends.push(<MenuItem link={link}>{`${i}. Trends Testing`}</MenuItem>);
 }
 
-export default function SideBar() {
-  const [isOpen, setIsOpen] = useState(true);
+export default function SideBar({ isOpen, toggle }: any) {
   const currentYear = new Date().getFullYear();
   const [activeYear, setYear] = useState(currentYear);
   const [isMemesActive, toggleMemes] = useState(true);
   const filterProperties = { currentYear, activeYear, setYear, isMemesActive, toggleMemes };
-  if (!isOpen) return <HamburgerIcon setIsOpen={setIsOpen} />;
   return (
-    <div className={styles.sideBar}>
-      <button className={styles.closeMenu} onClick={() => setIsOpen(false)}>
+    <div style={{ display: isOpen ? "block" : "none" }} className={styles.sideBar}>
+      <button className={styles.closeMenu} onClick={() => toggle(false)}>
         X
       </button>
       <ListFilter {...filterProperties} />
@@ -30,18 +28,5 @@ export default function SideBar() {
         {isMemesActive ? <MemeList activeYear={activeYear} /> : trends}
       </div>
     </div>
-  );
-}
-
-type Props = {
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-function HamburgerIcon({ setIsOpen }: Props) {
-  return (
-    <button className={styles.burgerMenu} onClick={() => setIsOpen(true)}>
-      <div></div>
-      <div></div>
-      <div></div>
-    </button>
   );
 }
