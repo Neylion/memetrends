@@ -21,7 +21,7 @@ const Layout = ({ children, title }: Props) => {
         <button onClick={() => toggleSidebar(!sideBarIsOpen)}>Menu</button>
         <div className={styles.navbarTitle}>MemeTrends.net</div>
       </div>
-      <div style={{ display: "flex", height: "100%" }}>
+      <div className={styles.page}>
         <SideBar isOpen={sideBarIsOpen} toggle={toggleSidebar} />
         <div id={styles.right} className={styles.column}>
           <div className={styles.content}>{children}</div>
