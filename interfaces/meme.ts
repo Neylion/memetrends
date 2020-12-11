@@ -1,8 +1,8 @@
-
 export type Meme = {
+  id: number;
   year: number;
   title: string;
-  link: string;
+  slug: string;
   description: string;
   readMoreLink: string;
   media: string[];

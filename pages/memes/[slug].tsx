@@ -1,23 +1,25 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import React, { Fragment } from "react";
 import Layout from "../../components/Layout";
-import { memes } from "../../data/sampleData";
+import http from "../../utils/http";
 import { Meme } from "../../interfaces/meme";
 
 const StaticPropsDetail = ({ meme, errors }: { meme: Meme; errors: any }) => {
   if (!meme || errors) {
     return (
       <Layout title="Error">
-        <p>
-          {!meme ? <span style={{ color: "red" }}>Missing meme information!</span> : null}
-          <span style={{ color: "red" }}>Error:</span> {errors}
-        </p>
+        {!meme ? <p style={{ color: "red" }}>Missing meme information!</p> : null}
+        <p style={{ color: "red" }}>Error: {errors || "Unknown"}</p>
       </Layout>
     );
   }
 
-  const mediaLinks = meme.media.map((x) => {
-    return <a href={x}>{x}</a>;
+  const mediaLinks = meme.media.map((x, index) => {
+    return (
+      <a key={`media-${index}`} href={x}>
+        {x}
+      </a>
+    );
   });
   return (
     <Layout title={`${meme.title}`}>
@@ -38,18 +40,24 @@ const StaticPropsDetail = ({ meme, errors }: { meme: Meme; errors: any }) => {
 export default StaticPropsDetail;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  let paths = memes.map((meme) => ({ params: { link: meme.link } }));
+  let memes = await http.getMemes();
+  let paths = memes.map((meme) => ({ params: { slug: meme.slug } }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const link = params?.link;
-    const meme = memes.find((data) => data.link === link);
+    if (!params) throw new Error("Internal Error. No parameters included!");
+    const link = params.slug;
+    const memes = await http.getMemes();
+    const meme = memes.find((data) => data.slug === link);
+    console.log("params", params);
+    console.log("meme", meme);
 
-    return { props: { meme } };
+    return { props: meme ? { meme } : {} };
   } catch (err) {
+    console.log("paramscatch", params);
     return { props: { errors: err.message } };
   }
 };
