@@ -9,7 +9,7 @@
   &Choice {
     margin: 0 5px;
     padding: 3px;
-    background-color: lightgray;
+    background-color: white;
     flex: 2;
     border: 1px solid;
   }
@@ -31,13 +31,12 @@
     &Content {
       display: none;
       position: absolute;
-      background-color: lightgray;
+      background-color: gray;
       margin-left: 5px;
       min-width: 100px;
 
       &Item {
         padding: 5px 0px;
-        background-color: inherit;
         width: 100%;
         display: block;
 

@@ -1,8 +1,10 @@
+@import "../../variables.scss";
+
 .sideBar {
   display: none;
   flex-direction: column;
   position: relative;
-  background-color: lightblue;
+  background-color: $sideBarBackgroundColor;
 
   @media screen and (min-width: 480px) {
     display: flex;
@@ -11,6 +13,7 @@
 }
 
 .content {
+  background-color: inherit;
   height: 100%;
   display: flex;
   flex-grow: 1;

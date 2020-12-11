@@ -1,7 +1,9 @@
+@import "../../variables";
+
 .item {
   padding: 10px 20px;
   font-weight: bold;
-  background-color: lightblue;
+  background-color: inherit;
 
   &:hover {
     filter: brightness(110%);
