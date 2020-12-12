@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
 import MenuItem from "./MenuItem";
 import http from "../../utils/http";
-import { Meme } from "../../interfaces/meme";
+import { IMeme } from "../../interfaces/meme";
 
 export default function MemeList({ activeYear }: { activeYear: number }) {
-  const [memes, setMemes] = useState(new Array<Meme>());
+  const [memes, setMemes] = useState(new Array<IMeme>());
   let memeElements: JSX.Element[] = [];
 
   useEffect(() => {

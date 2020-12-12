@@ -1,6 +1,8 @@
 $mainDarkGray: darkgray;
 $mainLightGray: lightgray;
 $mainBlack: #333;
+$transparentBlack: rgba(2, 2, 2, 0.8);
+$imageShadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 
 $sideBarBackgroundColor: $mainDarkGray;
 $contentBackgroundColor: $mainLightGray;

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import sampleData from "../../../data/sampleData";
-import { Meme } from "../../../interfaces/meme";
+import { IMeme } from "../../../interfaces/meme";
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
@@ -8,7 +8,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
       const memesData = getMemes();
       return res.status(200).json(memesData);
     case "POST":
-      const meme: Meme = JSON.parse(req.body);
+      const meme: IMeme = JSON.parse(req.body);
       // TODO: Validate meme
       addMemes(meme);
       return res.send(`Added meme with the slug '${meme.slug}'`);
@@ -26,7 +26,7 @@ function getMemes() {
   return memesData;
 }
 
-function addMemes(meme: Meme) {
+function addMemes(meme: IMeme) {
   const conflictingMeme = sampleData
     .getMemes()
     .find((x) => x.slug === meme.slug || x.id === meme.id);

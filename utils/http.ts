@@ -1,4 +1,4 @@
-import { Meme } from "../interfaces/meme";
+import { IMeme } from "../interfaces/meme";
 import config from "../config/handler";
 
 export default {
@@ -6,12 +6,12 @@ export default {
   addMeme,
 };
 
-async function getMemes(): Promise<Meme[]> {
+async function getMemes(): Promise<IMeme[]> {
   const response = await fetch(config.baseUrl + "/api/memes");
   return response.json();
 }
 
-async function addMeme(meme: Meme): Promise<void> {
+async function addMeme(meme: IMeme): Promise<void> {
   const options = {
     method: "POST",
     body: JSON.stringify(meme),

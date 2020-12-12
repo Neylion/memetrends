@@ -1,10 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import React, { Fragment } from "react";
+import React from "react";
 import Layout from "../../components/Layout";
 import http from "../../utils/http";
-import { Meme } from "../../interfaces/meme";
+import { IMeme } from "../../interfaces/meme";
+import ImageGallery from "../../components/ImageGallery/ImageGallery";
 
-const StaticPropsDetail = ({ meme, errors }: { meme: Meme; errors: any }) => {
+const StaticPropsDetail = ({ meme, errors }: { meme: IMeme; errors: any }) => {
   if (!meme || errors) {
     return (
       <Layout title="Error">
@@ -14,24 +15,17 @@ const StaticPropsDetail = ({ meme, errors }: { meme: Meme; errors: any }) => {
     );
   }
 
-  const mediaLinks = meme.media.map((x, index) => {
-    return (
-      <a key={`media-${index}`} href={x}>
-        {x}
-      </a>
-    );
-  });
   return (
     <Layout title={`${meme.title}`}>
       <h1>{meme.title}</h1>
       <p>{meme.description}</p>
       {meme.readMoreLink ? <a href={meme.readMoreLink}>Read more about this meme</a> : null}
       <hr />
-      {mediaLinks.length > 0 ? (
-        <Fragment>
+      {meme.media.images.length > 0 ? (
+        <div>
           <h2>Media</h2>
-          {mediaLinks}
-        </Fragment>
+          <ImageGallery images={meme.media.images} />
+        </div>
       ) : null}
     </Layout>
   );
@@ -52,12 +46,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const link = params.slug;
     const memes = await http.getMemes();
     const meme = memes.find((data) => data.slug === link);
-    console.log("params", params);
-    console.log("meme", meme);
 
     return { props: meme ? { meme } : {} };
   } catch (err) {
-    console.log("paramscatch", params);
     return { props: { errors: err.message } };
   }
 };
