@@ -32,7 +32,7 @@ function getMemeElements(memes: IMeme[], activeYear: number) {
   memes.forEach((meme) => {
     if (meme.year === activeYear) {
       memeElements.push(
-        <ListMenuItem key={`meme-nav-${meme.id}`} link={`/memes/${meme.slug}?year=${activeYear}`}>
+        <ListMenuItem key={`meme-nav-${meme.id}`} link={`/memes/${meme.slug}`}>
           {meme.title}
         </ListMenuItem>
       );
