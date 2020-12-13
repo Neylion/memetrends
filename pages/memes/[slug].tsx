@@ -33,6 +33,10 @@ const StaticPropsDetail = ({ meme, errors }: { meme: IMeme; errors: any }) => {
 
 export default StaticPropsDetail;
 
+// TODO: Remove comments when no longer just testing around
+// Note to self: The following two methods run only at build time normally. However fallback: "blocking" changes this behavior slightly:
+// https://nextjs.org/docs/basic-features/data-fetching#fallback-blocking
+// Note to self2: When in dev mode (npm run dev etc) these actually run on every request. Test actual behavior by building and starting it as a production build.
 export const getStaticPaths: GetStaticPaths = async () => {
   let memes = await http.getMemes();
   let paths = memes.map((meme) => ({ params: { slug: meme.slug } }));
