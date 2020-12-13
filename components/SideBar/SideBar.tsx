@@ -10,16 +10,13 @@ for (let i = 100; i <= 200; i++) {
   trends.push(<MenuItem link={link}>{`${i}. Trends Testing`}</MenuItem>);
 }
 
-export default function SideBar({ isOpen, toggle }: any) {
+export default function SideBar() {
   const currentYear = new Date().getFullYear();
   const [activeYear, setYear] = useState(currentYear);
   const [isMemesActive, toggleMemes] = useState(true);
   const filterProperties = { currentYear, activeYear, setYear, isMemesActive, toggleMemes };
   return (
-    <div style={{ display: isOpen ? "block" : "none" }} className={styles.sideBar}>
-      <button className={styles.closeMenu} onClick={() => toggle(false)}>
-        X
-      </button>
+    <div className={styles.sideBar}>
       <ListFilter {...filterProperties} />
       <div className={styles.content}>
         <MenuItem link="/">Home</MenuItem>

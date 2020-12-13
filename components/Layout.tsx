@@ -18,11 +18,14 @@ const Layout = ({ children, title }: Props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className={styles.navbar}>
-        <button onClick={() => toggleSidebar(!sideBarIsOpen)}>Menu</button>
+        <button onClick={() => toggleSidebar(!sideBarIsOpen)}>
+          <span style={{ color: "#333", fontWeight: "bold" }}>{sideBarIsOpen ? "X" : "V"}</span>{" "}
+          Menu
+        </button>
         <div className={styles.navbarTitle}>MemeTrends.net</div>
       </div>
       <div className={styles.page}>
-        <SideBar isOpen={sideBarIsOpen} toggle={toggleSidebar} />
+        {sideBarIsOpen ? <SideBar /> : null}
         <div id={styles.right} className={styles.column}>
           <div className={styles.content}>{children}</div>
           <div className={styles.footer}>
