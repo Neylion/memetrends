@@ -2,18 +2,29 @@ import { NextApiRequest, NextApiResponse } from "next";
 import sampleData from "../../../data/sampleData";
 import { IMeme } from "../../../interfaces/meme";
 
+// TODO: Add middleware handling (logging new requests, handling the response etc)
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "GET":
       const memesData = getMemes();
       return res.status(200).json(memesData);
+      return res.status(200).json({
+        success: true,
+        data: memesData,
+      });
     case "POST":
-      const meme: IMeme = JSON.parse(req.body);
+      const meme: IMeme = req.body;
       // TODO: Validate meme
       addMemes(meme);
-      return res.send(`Added meme with the slug '${meme.slug}'`);
+      return res.status(200).json({
+        success: true,
+        data: `Added meme with the slug '${meme.slug}'`,
+      });
     default:
-      return res.send(`This endpoint does not support ${req.method} as method`);
+      return res.status(500).json({
+        success: false,
+        data: `This endpoint does not support ${req.method} as method`,
+      });
   }
 };
 
