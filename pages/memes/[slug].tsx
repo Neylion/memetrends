@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const memes = await http.getMemes();
     const meme = memes.find((data) => data.slug === link);
 
-    return { props: meme ? { meme } : {} };
+    return { props: { meme: meme || null }, revalidate: 60 };
   } catch (err) {
     return { props: { errors: err.message } };
   }
