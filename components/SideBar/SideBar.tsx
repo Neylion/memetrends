@@ -1,27 +1,30 @@
 import React, { useState } from "react";
 import styles from "./SideBar.module.scss";
-import MenuItem from "./MenuItem";
+import { ListMenuItem, NavMenuItem } from "./MenuItem";
 import MemeList from "./MemeList";
 import ListFilter from "./ListFilter";
 
 let trends: JSX.Element[] = [];
 for (let i = 100; i <= 200; i++) {
   const link = `/users/${i}`;
-  trends.push(<MenuItem link={link}>{`${i}. Trends Testing`}</MenuItem>);
+  trends.push(<ListMenuItem link={link}>{`${i}. Trends Testing`}</ListMenuItem>);
 }
 
+const currentYear = new Date().getFullYear();
+let activeYear: number | undefined;
+let setYear;
 export default function SideBar() {
-  const currentYear = new Date().getFullYear();
-  const [activeYear, setYear] = useState(currentYear);
+  [activeYear, setYear] = useState(activeYear || currentYear);
   const [isMemesActive, toggleMemes] = useState(true);
   const filterProperties = { currentYear, activeYear, setYear, isMemesActive, toggleMemes };
   return (
     <div className={styles.sideBar}>
+      <div className={styles.sideBarMain}>
+        <NavMenuItem link="/">Home</NavMenuItem>
+        <NavMenuItem link="/about">About</NavMenuItem>
+      </div>
       <ListFilter {...filterProperties} />
       <div className={styles.content}>
-        <MenuItem link="/">Home</MenuItem>
-        <MenuItem link="about">About</MenuItem>
-        <MenuItem link="/users">Users</MenuItem>
         {isMemesActive ? <MemeList activeYear={activeYear} /> : trends}
       </div>
     </div>

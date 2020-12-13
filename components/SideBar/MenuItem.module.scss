@@ -1,12 +1,27 @@
 @import "../../variables";
 
-.item {
-  padding: 10px 20px;
+.navItem,
+.listItem {
   font-weight: bold;
   background-color: inherit;
+  &:hover {
+    cursor: pointer;
+    color: rgb(9, 122, 109);
+  }
+}
 
+.navItem {
+  padding: 10px 0;
+  text-align: center;
+  flex: 1;
+  &:hover {
+    filter: brightness(90%);
+  }
+}
+
+.listItem {
+  padding: 10px 20px;
   &:hover {
     filter: brightness(110%);
-    cursor: pointer;
   }
 }
