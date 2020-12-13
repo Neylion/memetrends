@@ -25,13 +25,13 @@ const memeStore: IMeme[] = [
       images: [
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
       ],
     },
@@ -47,13 +47,13 @@ const memeStore: IMeme[] = [
       images: [
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
       ],
     },
@@ -92,13 +92,13 @@ const memeStore: IMeme[] = [
       images: [
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
       ],
     },
@@ -114,13 +114,13 @@ const memeStore: IMeme[] = [
       images: [
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
       ],
     },
@@ -160,13 +160,13 @@ const memeStore: IMeme[] = [
       images: [
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
       ],
     },
@@ -182,13 +182,13 @@ const memeStore: IMeme[] = [
       images: [
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
         {
           id: getId(),
-          alt: "temp",
-          link: "temp",
+          alt: "TEMPALT",
+          link: "http://temp.se/test.jpg",
         },
       ],
     },
