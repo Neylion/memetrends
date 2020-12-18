@@ -7,40 +7,7 @@
     margin: 0 5px;
     padding: 3px;
     background-color: white;
-    flex: 2;
-    border: 1px solid;
-  }
-
-  &Dropdown {
-    position: relative;
     flex: 1;
-
-    &Button {
-      margin: 0 5px;
-      padding: 3px;
-      border: 1px solid;
-    }
-
-    &:hover &Content {
-      display: block;
-    }
-
-    &Content {
-      display: none;
-      position: absolute;
-      background-color: gray;
-      margin-left: 5px;
-      min-width: 100px;
-
-      &Item {
-        padding: 5px 0px;
-        width: 100%;
-        display: block;
-
-        &:hover {
-          filter: brightness(110%);
-        }
-      }
-    }
+    border: 1px solid;
   }
 }

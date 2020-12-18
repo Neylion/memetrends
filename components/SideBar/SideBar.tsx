@@ -11,12 +11,12 @@ for (let i = 100; i <= 200; i++) {
 }
 
 const currentYear = new Date().getFullYear();
-let activeYear: number | undefined;
+let activeWhenFilters: string[] = [String(currentYear)];
 let setYear;
 export default function SideBar() {
-  [activeYear, setYear] = useState(activeYear || currentYear);
+  [activeWhenFilters, setYear] = useState(activeWhenFilters);
   const [isMemesActive, toggleMemes] = useState(true);
-  const filterProperties = { currentYear, activeYear, setYear, isMemesActive, toggleMemes };
+  const filterProperties = { currentYear, activeWhenFilters, setYear, isMemesActive, toggleMemes };
   return (
     <div className={styles.sideBar}>
       <div className={styles.sideBarMain}>
@@ -25,7 +25,7 @@ export default function SideBar() {
       </div>
       <ListFilter {...filterProperties} />
       <div className={styles.content}>
-        {isMemesActive ? <MemeList activeYear={activeYear} /> : trends}
+        {isMemesActive ? <MemeList whenFilter={activeWhenFilters} /> : trends}
       </div>
     </div>
   );

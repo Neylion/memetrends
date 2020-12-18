@@ -19,8 +19,7 @@ const Layout = ({ children, title }: Props) => {
       </Head>
       <div className={styles.navbar}>
         <button onClick={() => toggleSidebar(!sideBarIsOpen)}>
-          <span style={{ color: "#333", fontWeight: "bold" }}>{sideBarIsOpen ? "X" : "V"}</span>{" "}
-          Menu
+          <span className="openAndClose">{sideBarIsOpen ? "X" : "V"}</span> Menu
         </button>
         <div className={styles.navbarTitle}>MemeTrends.net</div>
       </div>

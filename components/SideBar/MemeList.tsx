@@ -5,7 +5,7 @@ import { IMeme } from "../../interfaces/meme";
 
 // TODO: Is this a suitable way to cache memes (To avoid "Loading" flash on every page request)?
 let cachedMemes: IMeme[] = [];
-export default function MemeList({ activeYear }: { activeYear: number }) {
+export default function MemeList({ whenFilter }: { whenFilter: string[] }) {
   const [memes, setMemes] = useState(new Array<IMeme>());
 
   useEffect(() => {
@@ -16,25 +16,25 @@ export default function MemeList({ activeYear }: { activeYear: number }) {
 
   if (memes.length <= 0) {
     if (cachedMemes.length > 0) {
-      const memeElements = getMemeElements(memes, activeYear);
+      const memeElements = getMemeElements(memes, whenFilter);
       return <Fragment>{memeElements}</Fragment>;
     }
     return <div>Loading</div>;
   } else {
     cachedMemes = memes;
-    const memeElements = getMemeElements(memes, activeYear);
+    const memeElements = getMemeElements(memes, whenFilter);
     return <Fragment>{memeElements}</Fragment>;
   }
 }
 
-function getMemeElements(memes: IMeme[], activeYear: number) {
+function getMemeElements(memes: IMeme[], whenFilter: string[]) {
   let memeElements: JSX.Element[] = [];
   memes.forEach((meme) => {
-    if (meme.year === activeYear) {
+    if (whenFilter.includes(String(meme.year))) {
       memeElements.push(
         <ListMenuItem key={`meme-nav-${meme.id}`} link={`/memes/${meme.slug}`}>
           {meme.title}
-        </ListMenuItem>
+        </ListMenuItem>,
       );
     }
   });
