@@ -30,6 +30,7 @@ export default function SideBar() {
     <div className={styles.sideBar}>
       <div className={styles.sideBarMain}>
         <NavMenuItem link="/">Home</NavMenuItem>
+        <NavMenuItem link="/trending">Trending</NavMenuItem>
         <NavMenuItem link="/about">About</NavMenuItem>
       </div>
       <ListFilter {...filterProperties} />
