@@ -1,16 +1,21 @@
+import { GetStaticProps } from "next";
 import Link from "next/link";
-import Layout from "../components/Layout";
+import React, { Fragment } from "react";
 
-const AboutPage = () => (
-  <Layout title="About">
-    <h1>About</h1>
-    <p>This is the about page</p>
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
-  </Layout>
-);
+export default function AboutPage() {
+  return (
+    <Fragment>
+      <h1>About</h1>
+      <p>This is the about page</p>
+      <p>
+        <Link href="/">
+          <a>Go home</a>
+        </Link>
+      </p>
+    </Fragment>
+  );
+}
 
-export default AboutPage;
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: { title: "About" } };
+};

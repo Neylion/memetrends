@@ -1,11 +1,16 @@
-import React from "react";
+import { GetStaticProps } from "next";
+import React, { Fragment } from "react";
 import Layout from "../components/Layout";
 
-export default function Testing() {
+export default function TrendingPage() {
   return (
-    <Layout title="Trending">
+    <Fragment>
       <h1>Trending</h1>
       <p>Coming soon...</p>
-    </Layout>
+    </Fragment>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: { title: "Trending" } };
+};

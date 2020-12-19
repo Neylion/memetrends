@@ -1,22 +1,21 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import React from "react";
-import Layout from "../../components/Layout";
+import React, { Fragment } from "react";
 import http from "../../utils/http";
 import { IMeme } from "../../interfaces/meme";
 import ImageGallery from "../../components/ImageGallery/ImageGallery";
 
-const StaticPropsDetail = ({ meme, errors }: { meme: IMeme; errors: any }) => {
+export default function MemePage({ meme, errors }: { meme: IMeme; errors: any }) {
   if (!meme || errors) {
     return (
-      <Layout title="Error">
+      <Fragment>
         {!meme ? <p style={{ color: "red" }}>Missing meme information!</p> : null}
         <p style={{ color: "red" }}>Error: {errors || "Unknown"}</p>
-      </Layout>
+      </Fragment>
     );
   }
 
   return (
-    <Layout title={`${meme.title}`}>
+    <Fragment>
       <h1>{meme.title}</h1>
       <p>{meme.description}</p>
       {meme.readMoreLink ? <a href={meme.readMoreLink}>Read more about this meme</a> : null}
@@ -27,11 +26,9 @@ const StaticPropsDetail = ({ meme, errors }: { meme: IMeme; errors: any }) => {
           <ImageGallery images={meme.media.images} />
         </div>
       ) : null}
-    </Layout>
+    </Fragment>
   );
-};
-
-export default StaticPropsDetail;
+}
 
 // TODO: Remove comments when no longer just testing around
 // Note to self: The following two methods run only at build time normally. However fallback: "blocking" changes this behavior slightly:
@@ -51,8 +48,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const memes = await http.getMemes();
     const meme = memes.find((data) => data.slug === link);
 
-    return { props: { meme: meme || null }, revalidate: 60 };
+    return { props: { title: meme?.title, meme: meme || null }, revalidate: 60 };
   } catch (err) {
-    return { props: { errors: err.message } };
+    return { props: { errors: err.message, title: "Meme Error" } };
   }
 };
