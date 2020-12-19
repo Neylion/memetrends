@@ -1,5 +1,5 @@
 {
-  "name": "with-typescript",
+  "name": "memetrends",
   "version": "1.0.0",
   "scripts": {
     "debug3": "node --inspect ./node_modules/next/dist/bin/next",
