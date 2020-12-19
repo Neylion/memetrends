@@ -1,39 +1,56 @@
+import { useState } from "react";
 import styles from "./Dropdown.module.scss";
 
-export function Dropdown({ title, children }: any) {
+interface Props {
+  title: string;
+  checkboxes: string[];
+  activeCheckboxes: string[];
+  setActiveCheckboxes: any;
+}
+export function Dropdown({ title, checkboxes, activeCheckboxes, setActiveCheckboxes }: Props) {
+  const [isOpen, setIsOpen] = useState(false);
+  let checkBoxElements: JSX.Element[] = [];
+  checkboxes.forEach((checkbox, index) => {
+    const isActive = activeCheckboxes.includes(checkbox);
+    const onToggle = () =>
+      onToggleWrapper(setActiveCheckboxes, checkbox, isActive, activeCheckboxes);
+    checkBoxElements.push(
+      <MultipleChoiceCheckbox key={`checkbox-${index}`} isActive={isActive} onToggle={onToggle}>
+        {checkbox}
+      </MultipleChoiceCheckbox>,
+    );
+  });
   return (
     <div className={styles.dropdown}>
-      <button className={styles.dropdownButton}>
-        <span className="openAndClose">{"V"}</span> {title}
+      <button className={styles.dropdownButton} onClick={() => setIsOpen(!isOpen)}>
+        <span className="openAndClose">{isOpen ? "X" : "V"}</span> {title}
       </button>
-      <div className={styles.dropdownContent}>{children}</div>
+      <div style={{ display: isOpen ? "block" : "none" }} className={styles.dropdownContent}>
+        <div className={styles.dropdownContentHelpers}>
+          <button onClick={() => setActiveCheckboxes(checkboxes)}>Select all</button>
+          <button onClick={() => setActiveCheckboxes([])}>Deselect all</button>
+        </div>
+        {checkBoxElements}
+      </div>
     </div>
   );
 }
 
 interface MultipleChoiceCheckboxProps {
-  onToggle: React.Dispatch<React.SetStateAction<string[]>>;
-  activeCheckboxes: string[];
+  onToggle: () => void;
+  isActive: boolean;
   children: string;
 }
-export function MultipleChoiceCheckbox({
+function MultipleChoiceCheckbox({
   onToggle,
-  activeCheckboxes,
+  isActive,
   children: title,
 }: MultipleChoiceCheckboxProps) {
-  const isActive = activeCheckboxes.includes(title);
   // TODO: Format checkbox
   return (
     <label className={styles.dropdownContentItem}>
-      <input
-        type="checkbox"
-        onClick={() =>
-          onToggleWrapper(onToggle, title, isActive, activeCheckboxes)
-        }
-        checked={isActive}
-        name={title}
-      />
-      {title}
+      <input type="checkbox" onChange={() => onToggle()} checked={isActive} name={title} />
+      <span>{title}</span>
     </label>
   );
 }

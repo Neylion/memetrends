@@ -22,6 +22,6 @@
 .listItem {
   padding: 10px 20px;
   &:hover {
-    filter: brightness(110%);
+    background-color: lighten($sideBarBackgroundColor, 10%);
   }
 }

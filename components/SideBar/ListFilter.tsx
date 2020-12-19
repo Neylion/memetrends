@@ -3,16 +3,16 @@ import { Dropdown, MultipleChoiceCheckbox } from "../Dropdown/Dropdown";
 import styles from "./ListFilter.module.scss";
 
 type Props = {
-  currentYear: number;
+  whenFilterOptions: string[];
   activeWhenFilters: string[];
-  setYear: React.Dispatch<React.SetStateAction<string[]>>;
+  setActiveWhenFilters: React.Dispatch<React.SetStateAction<string[]>>;
   searchInput: string;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
 };
 export default function ListFilter({
-  currentYear,
+  whenFilterOptions,
   activeWhenFilters,
-  setYear,
+  setActiveWhenFilters,
   searchInput,
   setSearchInput,
 }: Props) {
@@ -26,24 +26,26 @@ export default function ListFilter({
         onChange={(e) => setSearchInput(e.target.value)}
       />
       <WhenFilter
-        currentYear={currentYear}
         activeWhenFilters={activeWhenFilters}
-        onToggle={setYear}
+        whenFilterOptions={whenFilterOptions}
+        onToggle={setActiveWhenFilters}
       />
     </div>
   );
 }
 
-function WhenFilter({ currentYear, activeWhenFilters, onToggle }: any) {
-  // TODO: Better handling of what years to show here (Currently just last 5 years)
-  let checkBoxElements: JSX.Element[] = [];
-  for (let i = 0; i < 5; i++) {
-    const year = String(currentYear - i);
-    checkBoxElements.push(
-      <MultipleChoiceCheckbox onToggle={onToggle} activeCheckboxes={activeWhenFilters}>
-        {year}
-      </MultipleChoiceCheckbox>,
-    );
-  }
-  return <Dropdown title="When">{checkBoxElements}</Dropdown>;
+interface WhenFilterProps {
+  activeWhenFilters: string[];
+  whenFilterOptions: string[];
+  onToggle: any;
+}
+function WhenFilter({ activeWhenFilters, whenFilterOptions, onToggle }: WhenFilterProps) {
+  return (
+    <Dropdown
+      title="When"
+      checkboxes={whenFilterOptions}
+      activeCheckboxes={activeWhenFilters}
+      setActiveCheckboxes={onToggle}
+    />
+  );
 }

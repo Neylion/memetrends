@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .dropdown {
   position: relative;
   flex: 0 0 auto;
@@ -8,29 +10,42 @@
     border: 1px solid;
   }
 
-  &:hover &Content {
-    display: block;
-  }
-
   &Content {
-    display: none;
+    right: 0;
     position: absolute;
     background-color: gray;
-    margin-left: 5px;
     min-width: 100px;
+
+    &Helpers {
+      display: flex;
+      flex-direction: row;
+      border-bottom: 1px solid lighten(gray, 10%);
+
+      > button {
+        color: white;
+        background-color: transparent;
+        cursor: pointer;
+      }
+    }
 
     &Item {
       padding: 5px 0px;
       width: 100%;
       display: block;
       background-color: inherit;
+      display: flex;
 
       &:hover {
         filter: brightness(110%);
       }
 
       > input {
-        margin: 5px;
+        flex: 0 0 auto;
+        margin: 5px 10px;
+      }
+      > span {
+        flex: 1;
+        margin: auto;
       }
     }
   }

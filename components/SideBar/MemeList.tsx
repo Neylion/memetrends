@@ -38,7 +38,7 @@ function getMemeElements(memes: IMeme[], searchInput: string, whenFilter: string
   for (let i = 0; i < memes.length; i++) {
     const meme = memes[i];
     if (searchInput && !meme.title.toLowerCase().includes(searchInput.toLowerCase())) continue;
-    if (whenFilter.length > 0 && !whenFilter.includes(String(meme.year))) continue;
+    if (!whenFilter.includes(String(meme.year))) continue;
     memeElements.push(
       <ListMenuItem key={`meme-nav-${meme.id}`} link={`/memes/${meme.slug}`}>
         {meme.title}

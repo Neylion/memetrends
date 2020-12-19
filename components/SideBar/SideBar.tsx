@@ -5,15 +5,15 @@ import MemeList from "./MemeList";
 import ListFilter from "./ListFilter";
 
 const currentYear = new Date().getFullYear();
-let activeWhenFilters: string[] = [String(currentYear)];
-let setYear;
+let whenFilterOptions = getWhenFilterOptions(currentYear);
 export default function SideBar() {
-  [activeWhenFilters, setYear] = useState(activeWhenFilters);
+  // Set all when options as active as default
+  const [activeWhenFilters, setActiveWhenFilters] = useState(whenFilterOptions);
   const [searchInput, setSearchInput] = useState("");
   const filterProperties = {
-    currentYear,
+    whenFilterOptions,
     activeWhenFilters,
-    setYear,
+    setActiveWhenFilters,
     searchInput,
     setSearchInput,
   };
@@ -30,4 +30,14 @@ export default function SideBar() {
       </div>
     </div>
   );
+}
+
+function getWhenFilterOptions(currentYear: number) {
+  // TODO: Better handling of what years to show here (Currently just last 5 years)
+  let filterOptions: string[] = [];
+  for (let i = 0; i < 5; i++) {
+    const year = String(currentYear - i);
+    filterOptions.push(year);
+  }
+  return filterOptions;
 }
