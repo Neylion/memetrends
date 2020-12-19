@@ -1,7 +1,15 @@
 .filter {
   display: flex;
   flex-shrink: 0;
-  justify-content: space-between;
+  padding: 5px 0;
+  background-color: inherit;
+  filter: brightness(110%);
+  justify-content: flex-end;
+
+  &Search {
+    flex: 1;
+    margin: 0 5px;
+  }
 
   &Choice {
     margin: 0 5px;

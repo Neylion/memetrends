@@ -1,21 +1,21 @@
 @import "../../variables.scss";
 
 .sideBar {
-  display: none;
   flex-direction: column;
   position: relative;
   background-color: $sideBarBackgroundColor;
+  min-width: 100%;
 
   @media screen and (min-width: 480px) {
     display: flex;
-    flex-shrink: 0;
+    flex: 1;
+    min-width: 240px;
   }
 
   &Main {
     display: flex;
     align-items: stretch;
     background-color: white;
-    margin-bottom: 10px;
   }
 }
 

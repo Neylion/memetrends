@@ -16,7 +16,16 @@ let setYear;
 export default function SideBar() {
   [activeWhenFilters, setYear] = useState(activeWhenFilters);
   const [isMemesActive, toggleMemes] = useState(true);
-  const filterProperties = { currentYear, activeWhenFilters, setYear, isMemesActive, toggleMemes };
+  const [searchInput, setSearchInput] = useState("");
+  const filterProperties = {
+    currentYear,
+    activeWhenFilters,
+    setYear,
+    isMemesActive,
+    toggleMemes,
+    searchInput,
+    setSearchInput,
+  };
   return (
     <div className={styles.sideBar}>
       <div className={styles.sideBarMain}>
@@ -25,7 +34,11 @@ export default function SideBar() {
       </div>
       <ListFilter {...filterProperties} />
       <div className={styles.content}>
-        {isMemesActive ? <MemeList whenFilter={activeWhenFilters} /> : trends}
+        {isMemesActive ? (
+          <MemeList searchInput={searchInput} whenFilter={activeWhenFilters} />
+        ) : (
+          trends
+        )}
       </div>
     </div>
   );

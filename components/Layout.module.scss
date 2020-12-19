@@ -1,12 +1,12 @@
 @import "../variables.scss";
 
-.column {
+.mainColumn {
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   background-color: $contentBackgroundColor;
-  flex-grow: 1;
+  flex: 3;
 }
 
 .navbar {

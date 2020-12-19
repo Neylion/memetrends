@@ -25,7 +25,7 @@ const Layout = ({ children, title }: Props) => {
       </div>
       <div className={styles.page}>
         {sideBarIsOpen ? <SideBar /> : null}
-        <div id={styles.right} className={styles.column}>
+        <div id={styles.right} className={styles.mainColumn}>
           <div className={styles.content}>{children}</div>
           <div className={styles.footer}>
             <span>I'm here to stay (Footer)</span>

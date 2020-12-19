@@ -8,6 +8,8 @@ type Props = {
   setYear: React.Dispatch<React.SetStateAction<string[]>>;
   isMemesActive: boolean;
   toggleMemes: React.Dispatch<React.SetStateAction<boolean>>;
+  searchInput: string;
+  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
 };
 export default function ListFilter({
   currentYear,
@@ -15,16 +17,24 @@ export default function ListFilter({
   setYear,
   isMemesActive,
   toggleMemes,
+  searchInput,
+  setSearchInput,
 }: Props) {
-  const toggleMethod = () => toggleMemes(!isMemesActive);
   return (
     <div className={styles.filter}>
-      <FilterButton isActive={isMemesActive} setIsActive={toggleMethod}>
+      {/* <FilterButton isActive={isMemesActive} setIsActive={toggleMethod}>
         Memes
       </FilterButton>
       <FilterButton isActive={!isMemesActive} setIsActive={toggleMethod}>
         Trends
-      </FilterButton>
+      </FilterButton> */}
+      <input
+        className={styles.filterSearch}
+        key="list-search"
+        value={searchInput}
+        placeholder="Search..."
+        onChange={(e) => setSearchInput(e.target.value)}
+      />
       <WhenFilter
         currentYear={currentYear}
         activeWhenFilters={activeWhenFilters}
