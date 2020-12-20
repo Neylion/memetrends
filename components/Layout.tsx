@@ -7,9 +7,8 @@ type Props = {
   children?: ReactNode;
   title?: string;
 };
-
 const Layout = ({ children, title }: Props) => {
-  const [sideBarIsOpen, toggleSidebar] = useState(true);
+  const [sidebarIsOpen, toggleSidebar] = useState(true);
   return (
     <Fragment>
       <Head>
@@ -17,23 +16,43 @@ const Layout = ({ children, title }: Props) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className={styles.navbar}>
-        <button onClick={() => toggleSidebar(!sideBarIsOpen)}>
-          <span className="openAndClose">{sideBarIsOpen ? "X" : "V"}</span> Menu
-        </button>
-        <div className={styles.navbarTitle}>MemeTrends.net</div>
-      </div>
+      <Navbar sidebarIsOpen={sidebarIsOpen} toggleSidebar={toggleSidebar} />
       <div className={styles.page}>
-        {sideBarIsOpen ? <SideBar /> : null}
+        {sidebarIsOpen ? <SideBar /> : null}
         <div id={styles.right} className={styles.mainColumn}>
-          <div className={styles.content}>{children}</div>
-          <div className={styles.footer}>
-            <span>I'm here to stay (Footer)</span>
-          </div>
+          <PageContent>{children}</PageContent>
+          <Footer />
         </div>
       </div>
     </Fragment>
   );
 };
+
+function Navbar({ sidebarIsOpen, toggleSidebar }: any) {
+  return (
+    <div className={styles.navbar}>
+      <button onClick={() => toggleSidebar(!sidebarIsOpen)}>
+        <span className="openAndClose">{sidebarIsOpen ? "X" : "V"}</span> Menu
+      </button>
+      <div className={styles.navbarTitle}>MemeTrends.net</div>
+    </div>
+  );
+}
+
+function PageContent({ children }: any) {
+  return (
+    <Fragment>
+      <div className={styles.content}>{children}</div>
+    </Fragment>
+  );
+}
+
+function Footer() {
+  return (
+    <div className={styles.footer}>
+      <span>I'm here to stay (Footer)</span>
+    </div>
+  );
+}
 
 export default Layout;
