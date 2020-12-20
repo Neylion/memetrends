@@ -1,15 +1,16 @@
-export interface IMeme {
+export interface Meme {
   id: number;
   year: number;
+  isTrending: boolean;
   title: string;
   slug: string;
   description: string;
-  readMoreLink: string;
-  media: { images: IImage[] };
+  readMoreUrl: string;
+  images: Image[];
 }
 
-export interface IImage {
+export interface Image {
   id: string;
   alt: string;
-  link: string;
+  url: string;
 }

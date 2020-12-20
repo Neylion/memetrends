@@ -1,5 +1,5 @@
 import React from "react";
-import { Dropdown, MultipleChoiceCheckbox } from "../Dropdown/Dropdown";
+import { Dropdown } from "../Dropdown/Dropdown";
 import styles from "./ListFilter.module.scss";
 
 type Props = {

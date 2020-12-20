@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { IImage } from "../../interfaces/meme";
+import { Image as IImage } from "../../interfaces/meme";
 import styles from "./ImageGallery.module.scss";
 
 function getImageElements(images: IImage[], setFullViewImage: (image: IImage) => void) {
@@ -46,10 +46,10 @@ function ImagePopup({ imageProperties, closePopup }: ImagePopupProps) {
 interface ImageProps extends IImage {
   onClick: () => void;
 }
-function Image({ link, alt, onClick }: ImageProps) {
+function Image({ url, alt, onClick }: ImageProps) {
   return (
     <div className={styles.imageContainer}>
-      <img className={styles.image} src={link} alt={alt} onClick={() => onClick()} />
+      <img className={styles.image} src={url} alt={alt} onClick={() => onClick()} />
     </div>
   );
 }
